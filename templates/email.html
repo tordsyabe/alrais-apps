@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+<body>
+    <h2>Hi {{details.organizer}}</h2>
+    <p>Your booking has been accepted, please click the link below to verify you booking</p>
+
+    <h3>Details</h3>
+    <p>Title: {{details.title}}</p>
+    <p>Date: {{details.meetingDate}}</p>
+    <p>Start Time: {{details.startTime}}</p>
+    <p>End Time: {{details.endTime}}</p>
+    https://alrais-meeting-rooms.web.app/verify?meeting_id={{details.id}}&email={{details.organizer}}
+</body>
+</html>

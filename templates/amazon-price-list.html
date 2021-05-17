@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="shortcut icon" type="image/jpg" href="../static/favicon.ico"/>
+    <link rel="stylesheet" href="../static/style.css"/>
+    <title>Amazon Price List</title>
+</head>
+<body>
+<div class="container">
+    <div style="text-align: center;">
+        <img src="../static/logo.png" alt="logo"/>
+
+    </div>
+    {% if message %}
+    <p class="message">{{ message | safe }}</p>
+    {% endif %}
+    <form action="/amazon-scrape" method="POST">
+        <div class="form-group">
+
+            <input
+                    type="text"
+                    name="asin"
+                    placeholder="Input asin here"
+            />
+
+        </div>
+        <input type="submit" value="Get Data" class="btn"/>
+    </form>
+    {% if table_data %}
+    {% if table_data is string %}
+    <!--    <h1 class="asin">{{ ascin }}</h1>-->
+    <p class="message">{{ table_data | safe }}</p>
+    {% else %}
+    <!--    <h1 class="asin">{{ ascin }}</h1>-->
+    <table class="table">
+        <tr>
+            <th>asin</th>
+            <th>Vendor</th>
+            <th>Price</th>
+            <th>Imports</th>
+        </tr>
+        {% for row in table_data %}
+        <tr>
+            {% for item in row %}
+            <td> {{item}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+
+    </table>
+        <form method="POST" action="/download-amazon-price-list">
+        <input type="hidden" id="filename" name="filename"/>
+        <input type="submit" value="Download Price List (.xlsx)" class="btn" id="downloadBtnFile"/>
+    </form>
+    {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>

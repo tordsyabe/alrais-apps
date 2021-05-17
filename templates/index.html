@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/jpg" href="../static/favicon.ico"/>
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Generate Barcodes</title>
+  </head>
+  <body>
+    <div class="container">
+      <img src="../static/logo.png" alt="alrais trading" />
+      {% if message %}
+      <p class="message">{{ message | safe }}</p>
+      {% endif %}
+      <form action="/create" method="POST">
+        <div class="form-group">
+          <p>Dear Gunjan & Dimple,</p>
+          <br />
+          <p>Please use this for your daily barcode needs.</p>
+          <br />
+          <p>Sincerly yours,</p>
+          <p>IT Department</p>
+          <br />
+          <input
+            type="text"
+            name="barcode"
+            placeholder="Input barcode to generate"
+          />
+        </div>
+        <input type="submit" value="Generate" class="btn" />
+      </form>
+    </div>
+  </body>
+</html>
+
