@@ -104,6 +104,20 @@ def send_verification_email():
         mail.send(msg)
         return {"result": "Verification email sent, please verify your booking."}
 
+@app.route('/send-approved-email', methods=['POST'])
+@cross_origin()
+def send_approved_email():
+    if request.method == 'POST':
+        content = request.json
+        # meeting_id = content['data'].get('id')
+        recipient = content['data'].get('organizer')
+        msg = Message('Your meeting is approved', sender='alrais.meeting-rooms@gmail.com', recipients=[recipient])
+        # msg.body = f"Please click the link to verify your booked meeting http://192.168.10.70:3000/verify?email={recipient}&meeting_id={meeting_id}"
+        msg.html = render_template("approved-mail.html", details=content['data'])
+        mail.send(msg)
+        return {"result": "Your meeting had been approved."}
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
     app.debug(True)
