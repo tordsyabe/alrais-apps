@@ -5,6 +5,8 @@ env/
 ENV/
 env.bak/
 venv.bak/
+*.xlxs
+*.zip
 *.pdf
 *.py[co]
 *.DS_*
