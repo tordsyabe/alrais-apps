@@ -35,3 +35,5 @@ pip-log.txt
 venv
 *.pyc
 build
+*.swp
+*.save
